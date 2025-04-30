@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - LearnHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .blog-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 8rem 5% 5rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .blog-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 5%;
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+        }
+
+        .blog-posts {
+            display: grid;
+            gap: 3rem;
+        }
+
+        .blog-post {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .blog-post:hover {
+            transform: translateY(-5px);
+        }
+
+        .post-image {
+            position: relative;
+        }
+
+        .post-image img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        .post-category {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: #3498db;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .post-content {
+            padding: 2rem;
+        }
+
+        .post-meta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .post-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .post-title {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .post-excerpt {
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .read-more {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .read-more:hover {
+            color: #2980b9;
+            gap: 1rem;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 100px;
+        }
+
+        .sidebar-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .sidebar-title {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .sidebar-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #3498db;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .search-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .search-form button {
+            padding: 0.8rem 1.5rem;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .search-form button:hover {
+            background-color: #2980b9;
+        }
+
+        .categories-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .categories-list li {
+            margin-bottom: 1rem;
+        }
+
+        .categories-list a {
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .categories-list a:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+        }
+
+        .categories-list span {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .recent-posts {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .recent-post {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .recent-post img {
+            width: 80px;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .recent-post-content h4 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+            font-size: 1rem;
+        }
+
+        .recent-post-content p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: rgba(52, 152, 219, 0.1);
+            color: #3498db;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .tag:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .pagination a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: white;
+            color: #2c3e50;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .pagination a:hover,
+        .pagination a.active {
+            background-color: #3498db;
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .blog-content {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+        }
+
+        /* Enhanced Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.5), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section {
+            position: relative;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: #3498db;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .footer-section:hover h3::after {
+            width: 100px;
+        }
+
+        .footer-section p {
+            color: #ecf0f1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            transform: translateX(10px);
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .footer-links i {
+            font-size: 1rem;
+            color: #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover i {
+            transform: scale(1.2);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #3498db;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .social-links a:hover::before {
+            transform: scale(1);
+        }
+
+        .social-links a:hover i {
+            color: white;
+            z-index: 1;
+        }
+
+        .newsletter {
+            margin-top: 2rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: #ecf0f1;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .copyright a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .copyright {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/istockphoto-2198836359-612x612.webp" alt="LearnHub Logo" class="logo-img">
+            LearnHub
+        </div>
+        <button class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+    </nav>
+
+    <section class="blog-header">
+        <h1>LearnHub Blog</h1>
+        <p>Stay updated with the latest in education and learning</p>
+    </section>
+
+    <div class="blog-content">
+        <main class="blog-posts">
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="images/photo-1517048676732-d65bc937f952.avif" alt="Web Development">
+                    <span class="post-category">Web Development</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> March 15, 2024</span>
+                        <span><i class="far fa-user"></i> John Doe</span>
+                        <span><i class="far fa-comment"></i> 5 Comments</span>
+                    </div>
+                    <h2 class="post-title">The Future of Web Development in 2024</h2>
+                    <p class="post-excerpt">Explore the latest trends and technologies shaping the future of web development, from AI integration to progressive web apps.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="images/photo-1542744173-8e7e53415bb0.avif" alt="Data Science">
+                    <span class="post-category">Data Science</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> March 10, 2024</span>
+                        <span><i class="far fa-user"></i> Jane Smith</span>
+                        <span><i class="far fa-comment"></i> 8 Comments</span>
+                    </div>
+                    <h2 class="post-title">Machine Learning for Beginners: A Comprehensive Guide</h2>
+                    <p class="post-excerpt">Learn the fundamentals of machine learning and how to get started with this transformative technology.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <div class="post-image">
+                    <img src="images/photo-1552664730-d307ca884978.avif" alt="Digital Marketing">
+                    <span class="post-category">Digital Marketing</span>
+                </div>
+                <div class="post-content">
+                    <div class="post-meta">
+                        <span><i class="far fa-calendar"></i> March 5, 2024</span>
+                        <span><i class="far fa-user"></i> Mike Johnson</span>
+                        <span><i class="far fa-comment"></i> 12 Comments</span>
+                    </div>
+                    <h2 class="post-title">Social Media Marketing Strategies for 2024</h2>
+                    <p class="post-excerpt">Discover effective social media marketing strategies to grow your brand and engage with your audience.</p>
+                    <a href="#" class="read-more">Read More <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </article>
+
+            <div class="pagination">
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#"><i class="fas fa-chevron-right"></i></a>
+            </div>
+        </main>
+
+        <aside class="sidebar">
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Search</h3>
+                <form class="search-form">
+                    <input type="text" placeholder="Search articles...">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </form>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Categories</h3>
+                <ul class="categories-list">
+                    <li><a href="#">Web Development <span>15</span></a></li>
+                    <li><a href="#">Data Science <span>12</span></a></li>
+                    <li><a href="#">Digital Marketing <span>8</span></a></li>
+                    <li><a href="#">Business <span>10</span></a></li>
+                    <li><a href="#">Design <span>7</span></a></li>
+                </ul>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Recent Posts</h3>
+                <div class="recent-posts">
+                    <div class="recent-post">
+                        <img src="images/photo-1517048676732-d65bc937f952.avif" alt="Recent Post">
+                        <div class="recent-post-content">
+                            <h4>The Future of Web Development</h4>
+                            <p>March 15, 2024</p>
+                        </div>
+                    </div>
+                    <div class="recent-post">
+                        <img src="images/photo-1542744173-8e7e53415bb0.avif" alt="Recent Post">
+                        <div class="recent-post-content">
+                            <h4>Machine Learning Guide</h4>
+                            <p>March 10, 2024</p>
+                        </div>
+                    </div>
+                    <div class="recent-post">
+                        <img src="images/photo-1552664730-d307ca884978.avif" alt="Recent Post">
+                        <div class="recent-post-content">
+                            <h4>Social Media Marketing</h4>
+                            <p>March 5, 2024</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3 class="sidebar-title">Tags</h3>
+                <div class="tags">
+                    <a href="#" class="tag">Web Development</a>
+                    <a href="#" class="tag">JavaScript</a>
+                    <a href="#" class="tag">Python</a>
+                    <a href="#" class="tag">Machine Learning</a>
+                    <a href="#" class="tag">Marketing</a>
+                    <a href="#" class="tag">Design</a>
+                    <a href="#" class="tag">Business</a>
+                    <a href="#" class="tag">Education</a>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About LearnHub</h3>
+                <p>LearnHub is your gateway to knowledge and professional growth. We offer high-quality courses taught by industry experts to help you achieve your learning goals.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com/learnhub" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/learnhub" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/company/learnhub" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com/learnhub" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/learnhub" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="courses.html"><i class="fas fa-book"></i> Courses</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="help.html"><i class="fas fa-headset"></i> Help Center</a></li>
+                    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                    <li><a href="security.html"><i class="fas fa-user-shield"></i> Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><a href="https://maps.google.com/?q=123+Education+St,+Learning+City" target="_blank"><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</a></li>
+                    <li><a href="mailto:info@learnhub.com"><i class="fas fa-envelope"></i> info@learnhub.com</a></li>
+                    <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 (234) 567-890</a></li>
+                    <li><a href="contact.html#hours"><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</a></li>
+                </ul>
+                <div class="newsletter">
+                    <p>Subscribe to our newsletter</p>
+                    <form class="newsletter-form" action="subscribe.php" method="POST">
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 LearnHub. All rights reserved.</p>
+            <div class="copyright">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navLinks.contains(event.target) && !menuBtn.contains(event.target)) {
+                navLinks.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - LearnHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .faq-header {
+            background: linear-gradient(135deg, #3498db, #2c3e50);
+            color: white;
+            padding: 8rem 5% 5rem;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .faq-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 5%;
+        }
+
+        .faq-section {
+            margin-bottom: 4rem;
+        }
+
+        .faq-section h2 {
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            font-size: 2rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .faq-section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: #3498db;
+        }
+
+        .faq-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .faq-question {
+            padding: 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .faq-question h3 {
+            color: #2c3e50;
+            font-size: 1.2rem;
+            margin: 0;
+        }
+
+        .faq-question i {
+            color: #3498db;
+            transition: transform 0.3s;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+
+        .faq-answer p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-item.active .faq-question {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .search-section {
+            margin-bottom: 4rem;
+        }
+
+        .search-form {
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-form input {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 30px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .search-form input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 10px rgba(52, 152, 219, 0.2);
+        }
+
+        .search-form button {
+            position: absolute;
+            right: 1.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #3498db;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .contact-support {
+            text-align: center;
+            margin-top: 4rem;
+            padding: 3rem;
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.1), rgba(44, 62, 80, 0.1));
+            border-radius: 10px;
+        }
+
+        .contact-support h2 {
+            color: #2c3e50;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-support p {
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+
+        .contact-btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .faq-content {
+                padding: 3rem 5%;
+            }
+
+            .faq-section h2 {
+                font-size: 1.8rem;
+            }
+
+            .faq-question h3 {
+                font-size: 1.1rem;
+            }
+        }
+
+        /* Enhanced Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.5), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section {
+            position: relative;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: #3498db;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .footer-section:hover h3::after {
+            width: 100px;
+        }
+
+        .footer-section p {
+            color: #ecf0f1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            transform: translateX(10px);
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .footer-links i {
+            font-size: 1rem;
+            color: #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover i {
+            transform: scale(1.2);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #3498db;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .social-links a:hover::before {
+            transform: scale(1);
+        }
+
+        .social-links a:hover i {
+            color: white;
+            z-index: 1;
+        }
+
+        .newsletter {
+            margin-top: 2rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form button {
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom p {
+            color: #ecf0f1;
+            margin-bottom: 1rem;
+        }
+
+        .copyright {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .copyright a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .copyright a:hover {
+            color: #3498db;
+        }
+
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .copyright {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/istockphoto-2198836359-612x612.webp" alt="LearnHub Logo" class="logo-img">
+            LearnHub
+        </div>
+        <button class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+    </nav>
+
+    <section class="faq-header">
+        <h1>Frequently Asked Questions</h1>
+        <p>Find answers to common questions about LearnHub</p>
+    </section>
+
+    <div class="faq-content">
+        <div class="search-section">
+            <form class="search-form">
+                <input type="text" placeholder="Search for answers...">
+                <button type="submit"><i class="fas fa-search"></i></button>
+            </form>
+        </div>
+
+        <div class="faq-section">
+            <h2>General Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What is LearnHub?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>LearnHub is an online learning platform that offers high-quality courses across various subjects. Our mission is to make education accessible to everyone, anywhere in the world.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I get started with LearnHub?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Getting started is easy! Simply create an account, browse our course catalog, and enroll in the courses that interest you. You can start learning immediately after enrollment.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Are the courses free?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We offer both free and paid courses. Free courses provide basic knowledge, while paid courses offer more comprehensive content, certificates, and additional resources.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>Course Related</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How long do I have access to a course?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Once you enroll in a course, you have lifetime access to the course materials. You can learn at your own pace and revisit the content whenever you need to.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Do I receive a certificate after completing a course?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, upon successful completion of a paid course, you'll receive a certificate that you can share on your LinkedIn profile or resume.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>Can I download course materials?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, most course materials are available for download, including lecture slides, PDFs, and other resources. However, video content is only available for streaming.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-section">
+            <h2>Technical Support</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What are the system requirements?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can access LearnHub from any device with a modern web browser and internet connection. We recommend using the latest version of Chrome, Firefox, Safari, or Edge.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>How do I reset my password?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Click on the "Forgot Password" link on the login page, enter your email address, and follow the instructions sent to your email to reset your password.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <h3>What should I do if I experience technical issues?</h3>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>If you encounter any technical issues, please try clearing your browser cache and cookies first. If the problem persists, contact our support team through the Help Center.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="contact-support">
+            <h2>Still Have Questions?</h2>
+            <p>If you can't find the answer you're looking for, our support team is here to help you 24/7.</p>
+            <a href="contact.html" class="contact-btn">Contact Support</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About LearnHub</h3>
+                <p>LearnHub is your gateway to knowledge and professional growth. We offer high-quality courses taught by industry experts to help you achieve your learning goals.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com/learnhub" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/learnhub" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/company/learnhub" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com/learnhub" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/learnhub" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="courses.html"><i class="fas fa-book"></i> Courses</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="help.html"><i class="fas fa-headset"></i> Help Center</a></li>
+                    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                    <li><a href="security.html"><i class="fas fa-user-shield"></i> Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><a href="https://maps.google.com/?q=123+Education+St,+Learning+City" target="_blank"><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</a></li>
+                    <li><a href="mailto:info@learnhub.com"><i class="fas fa-envelope"></i> info@learnhub.com</a></li>
+                    <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 (234) 567-890</a></li>
+                    <li><a href="contact.html#hours"><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</a></li>
+                </ul>
+                <div class="newsletter">
+                    <p>Subscribe to our newsletter</p>
+                    <form class="newsletter-form" action="subscribe.php" method="POST">
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 LearnHub. All rights reserved.</p>
+            <div class="copyright">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navLinks.contains(event.target) && !menuBtn.contains(event.target)) {
+                navLinks.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+
+        // FAQ accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

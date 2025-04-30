@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - LearnHub</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Additional styles specific to privacy page */
+        .header {
+            background: linear-gradient(135deg, #4f46e5, #818cf8);
+            color: white;
+            padding: 6rem 2rem 4rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 60px;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="2"/></svg>') repeat;
+            opacity: 0.1;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: -3rem auto 0;
+            padding: 0 2rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .privacy-content {
+            background: white;
+            border-radius: 10px;
+            padding: 3rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .privacy-section {
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .privacy-section:last-child {
+            border-bottom: none;
+        }
+
+        .privacy-section h2 {
+            color: #4f46e5;
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .privacy-section h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: #818cf8;
+        }
+
+        .privacy-section h3 {
+            color: #2c3e50;
+            margin: 2rem 0 1rem;
+            font-size: 1.5rem;
+        }
+
+        .privacy-section p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .privacy-section li {
+            color: #6b7280;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .privacy-section li::before {
+            content: '•';
+            color: #4f46e5;
+            position: absolute;
+            left: 0;
+            font-size: 1.2rem;
+        }
+
+        .privacy-section a {
+            color: #4f46e5;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .privacy-section a:hover {
+            color: #818cf8;
+        }
+
+        .highlight-box {
+            background: rgba(79, 70, 229, 0.05);
+            border-left: 4px solid #4f46e5;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .contact-privacy {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(79, 70, 229, 0.05);
+            border-radius: 10px;
+        }
+
+        .contact-privacy h2 {
+            color: #4f46e5;
+            margin-bottom: 1rem;
+        }
+
+        .contact-privacy p {
+            color: #6b7280;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: #4f46e5;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-btn:hover {
+            background: #818cf8;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 4rem 1rem;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .privacy-content {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Enhanced Footer Styles */
+        .footer {
+            background: linear-gradient(135deg, #1a2a3a 0%, #2c3e50 100%);
+            color: white;
+            padding: 4rem 2rem 2rem;
+            margin-top: auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.5), transparent);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section {
+            position: relative;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: #3498db;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s ease;
+        }
+
+        .footer-section:hover h3::after {
+            width: 100px;
+        }
+
+        .footer-section p {
+            color: #ecf0f1;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 1rem;
+            transform: translateX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links li:hover {
+            transform: translateX(10px);
+        }
+
+        .footer-links a {
+            color: #ecf0f1;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: #3498db;
+        }
+
+        .footer-links i {
+            font-size: 1rem;
+            color: #3498db;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-links a:hover i {
+            transform: scale(1.2);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .social-links a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #3498db;
+            transform: scale(0);
+            transition: transform 0.3s ease;
+            border-radius: 50%;
+        }
+
+        .social-links a:hover::before {
+            transform: scale(1);
+        }
+
+        .social-links a:hover {
+            color: white;
+        }
+
+        .social-links a i {
+            position: relative;
+            z-index: 1;
+        }
+
+        .newsletter {
+            margin-top: 1.5rem;
+        }
+
+        .newsletter p {
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            color: #ecf0f1;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-bottom .copyright {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .footer-bottom .copyright a {
+            color: #3498db;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom .copyright a:hover {
+            color: #2980b9;
+        }
+
+        @media (max-width: 768px) {
+            .footer {
+                padding: 3rem 1.5rem 1.5rem;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .footer-section h3 {
+                font-size: 1.3rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .newsletter-form button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="images/istockphoto-2198836359-612x612.webp" alt="LearnHub Logo" class="logo-img">
+            LearnHub
+        </div>
+        <button class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="courses.html">Courses</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+    </nav>
+
+    <section class="header">
+        <h1>Privacy Policy</h1>
+        <p>Your privacy is important to us</p>
+    </section>
+
+    <div class="container">
+        <p class="last-updated">Last updated: March 15, 2024</p>
+
+        <div class="privacy-section">
+            <h2>Introduction</h2>
+            <p>Welcome to LearnHub's Privacy Policy. This document explains how we collect, use, and protect your personal information when you use our platform. By using LearnHub, you agree to the collection and use of information in accordance with this policy.</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>Information We Collect</h2>
+            <h3>Personal Information</h3>
+            <p>We collect information that you provide directly to us, including:</p>
+            <ul>
+                <li>Name and contact information (email, phone number)</li>
+                <li>Account credentials</li>
+                <li>Payment information</li>
+                <li>Profile information and preferences</li>
+                <li>Course progress and completion data</li>
+            </ul>
+
+            <h3>Automatically Collected Information</h3>
+            <p>When you use our platform, we automatically collect:</p>
+            <ul>
+                <li>Device information (IP address, browser type, operating system)</li>
+                <li>Usage data (pages visited, time spent, features used)</li>
+                <li>Cookies and similar tracking technologies</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>How We Use Your Information</h2>
+            <p>We use the collected information for various purposes:</p>
+            <ul>
+                <li>To provide and maintain our service</li>
+                <li>To notify you about changes to our service</li>
+                <li>To provide customer support</li>
+                <li>To gather analysis or valuable information to improve our platform</li>
+                <li>To monitor the usage of our service</li>
+                <li>To detect, prevent and address technical issues</li>
+                <li>To provide you with news, special offers, and general information about our services</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>Data Security</h2>
+            <p>We implement appropriate security measures to protect your personal information from unauthorized access, alteration, disclosure, or destruction. These measures include:</p>
+            <ul>
+                <li>Encryption of data in transit and at rest</li>
+                <li>Regular security assessments and updates</li>
+                <li>Access controls and authentication</li>
+                <li>Secure data storage and backup procedures</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>Your Rights</h2>
+            <p>You have the right to:</p>
+            <ul>
+                <li>Access your personal information</li>
+                <li>Correct inaccurate data</li>
+                <li>Request deletion of your data</li>
+                <li>Object to processing of your data</li>
+                <li>Request data portability</li>
+                <li>Withdraw consent at any time</li>
+            </ul>
+        </div>
+
+        <div class="privacy-section">
+            <h2>Cookies and Tracking</h2>
+            <p>We use cookies and similar tracking technologies to track activity on our platform and hold certain information. You can instruct your browser to refuse all cookies or to indicate when a cookie is being sent.</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>Third-Party Services</h2>
+            <p>We may employ third-party companies and individuals to facilitate our service, provide the service on our behalf, perform service-related services, or assist us in analyzing how our service is used.</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>Children's Privacy</h2>
+            <p>Our service is not intended for use by children under the age of 13. We do not knowingly collect personally identifiable information from children under 13.</p>
+        </div>
+
+        <div class="privacy-section">
+            <h2>Changes to This Policy</h2>
+            <p>We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
+        </div>
+
+        <div class="contact-privacy">
+            <h2>Contact Us</h2>
+            <p>If you have any questions about this Privacy Policy, please contact us:</p>
+            <a href="mailto:privacy@learnhub.com" class="contact-btn">Contact Privacy Team</a>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About LearnHub</h3>
+                <p>LearnHub is your gateway to knowledge and professional growth. We offer high-quality courses taught by industry experts to help you achieve your learning goals.</p>
+                <div class="social-links">
+                    <a href="https://facebook.com/learnhub" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://twitter.com/learnhub" target="_blank"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/company/learnhub" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://instagram.com/learnhub" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://youtube.com/learnhub" target="_blank"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="courses.html"><i class="fas fa-book"></i> Courses</a></li>
+                    <li><a href="about.html"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    <li><a href="contact.html"><i class="fas fa-envelope"></i> Contact</a></li>
+                    <li><a href="blog.html"><i class="fas fa-blog"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="faq.html"><i class="fas fa-question-circle"></i> FAQ</a></li>
+                    <li><a href="help.html"><i class="fas fa-headset"></i> Help Center</a></li>
+                    <li><a href="privacy.html"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+                    <li><a href="terms.html"><i class="fas fa-file-contract"></i> Terms of Service</a></li>
+                    <li><a href="security.html"><i class="fas fa-user-shield"></i> Security</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <ul class="footer-links">
+                    <li><a href="https://maps.google.com/?q=123+Education+St,+Learning+City" target="_blank"><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</a></li>
+                    <li><a href="mailto:info@learnhub.com"><i class="fas fa-envelope"></i> info@learnhub.com</a></li>
+                    <li><a href="tel:+1234567890"><i class="fas fa-phone"></i> +1 (234) 567-890</a></li>
+                    <li><a href="contact.html#hours"><i class="fas fa-clock"></i> Mon-Fri: 9:00 AM - 6:00 PM</a></li>
+                </ul>
+                <div class="newsletter">
+                    <p>Subscribe to our newsletter</p>
+                    <form class="newsletter-form" action="subscribe.php" method="POST">
+                        <input type="email" name="email" placeholder="Enter your email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 LearnHub. All rights reserved.</p>
+            <div class="copyright">
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="terms.html">Terms of Service</a>
+                <a href="cookies.html">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu toggle
+        const menuBtn = document.querySelector('.menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+            menuBtn.innerHTML = navLinks.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : 
+                '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!navLinks.contains(event.target) && !menuBtn.contains(event.target)) {
+                navLinks.classList.remove('active');
+                menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            }
+        });
+    </script>
+</body>
+</html> 
